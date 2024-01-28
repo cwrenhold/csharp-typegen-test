@@ -1,0 +1,55 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/csharp-typegen-test.sln",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/csharp-typegen-test.sln",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/csharp-typegen-test.sln"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Generate typescript types",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "typegen",
+                "generate",
+            ],
+            // "command": "dotnet build ${workspaceFolder}/TestingTypeGen.csproj && dotnet typegen generate",
+            "problemMatcher": "$msCompile",
+            "dependsOn": [
+                "build"
+            ]
+        }
+    ]
+}
